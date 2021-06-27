@@ -16,6 +16,11 @@ type TableConfig struct {
 	PostDefault string
 }
 
+const (
+	FieldShortDescription = "short_description"
+	FieldLongDescription  = "description"
+)
+
 func AddTable(conf TableConfig, cc *apps.Context) {
 	c := load(cc)
 	if c.Tables == nil {
@@ -45,14 +50,15 @@ func GetTables(cc *apps.Context) TablesConfig {
 		DisplayName: "Incidents",
 		Fields: []*apps.Field{
 			{
-				Name:       "short_description",
+				Name:       FieldShortDescription,
+				Label:      FieldShortDescription,
 				ModalLabel: "Short Description",
-				Label:      "short_description",
 				Type:       apps.FieldTypeText,
+				IsRequired: true,
 			},
 			{
-				Name:       "description",
-				Label:      "description",
+				Name:       FieldLongDescription,
+				Label:      FieldLongDescription,
 				ModalLabel: "Long Description",
 				Type:       apps.FieldTypeText,
 			},
